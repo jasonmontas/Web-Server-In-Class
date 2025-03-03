@@ -20,7 +20,8 @@ body {
 }
 
 .body-container {
-  margin-top: 20px;
   background-color: white;
+  height: 100vh;
+  padding: 1rem;
 }
 </style>
