@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import NavBar from './components/NavBar.vue'
+import NotificationList from './components/NotificationList.vue'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import NavBar from './components/NavBar.vue'
   </header>
 
   <div class="container body-container">
+    <NotificationList />
     <RouterView />
   </div>
 </template>
@@ -20,7 +22,7 @@ body {
 }
 
 .body-container {
-  background-color: white;
+  background-color: black;
   height: 100vh;
   padding: 1rem;
 }
