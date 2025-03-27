@@ -1,7 +1,7 @@
 <script setup lang="js">
-import { useNow } from '@vueuse/core';
+import { useNow } from '@vueuse/core'
 
-const { now, pause, resume } = useNow({ controls: true});
+const { now, pause, resume } = useNow({ controls: true })
 </script>
 
 <template>
@@ -16,5 +16,4 @@ const { now, pause, resume } = useNow({ controls: true});
   </div>
 </template>
 
-<style>
-</style>
+<style></style>
