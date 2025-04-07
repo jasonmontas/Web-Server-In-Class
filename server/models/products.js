@@ -1,44 +1,55 @@
+/*  B"H
+*/
 
 const data = require('../data/products.json')
- 
-function getAll() {
+const { CustomError, statusCodes } = require('./errors')
+
+const isAdmin = true;
+
+async function getAll() {
     return data
 }
 
-function get(id){
-    return data.find((item) => item.id == id)
+async function get(id){
+    const item = data.items.find((item) => item.id == id)
+    if (!item) {
+        throw new CustomError('Item not found', statusCodes.NOT_FOUND)
+    }
 }
 
-function create(item){
+async function create(item){
+    if(!isAdmin){
+        throw CustomError("Sorry, you are not authorized to create a new item", statusCodes.UNAUTHORIZED)
+    }
     const newItem = {
-        id: data.length + 1,
+        id: data.items.length + 1,
         ...item
     }
-    data.push(newItem)
+    data.items.push(newItem)
     return newItem
 }
 
-function update(id, item){
-    const index = data.findIndex((item) => item.id == id)
+async function update(id, item){
+    const index = data.items.findIndex((item) => item.id == id)
     if (index === -1) {
         return null
     }
     const updatedItem = {
-        ...data[index],
+        ...data.items[index],
         ...item
     }
-    data[index] = updatedItem
+    data.items[index] = updatedItem
     return updatedItem
 
 }
 
-function remove(id){
-    const index = data.findIndex((item) => item.id == id)
+async function remove(id){
+    const index = data.items.findIndex((item) => item.id == id)
     if (index === -1) {
         return null
     }
-    const deletedItem = data[index]
-    data.splice(index, 1)
+    const deletedItem = data.items[index]
+    data.items.splice(index, 1)
     return deletedItem
 }
 
