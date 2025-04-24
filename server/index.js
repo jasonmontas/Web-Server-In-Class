@@ -3,9 +3,10 @@
 // Load the http module to create an http server.
 const express = require('express')
 const productsController = require('./controllers/products');
-const e = require('express');
+const usersController = require('./controllers/users');
+require('dotenv').config()
 
-const PORT = 8000
+const PORT = process.env.PORT ?? 8000
 
 const app = express();
 
@@ -19,6 +20,7 @@ app
     res.send('Hello New Paltz, NY!!!')
   })
   .use('/api/v1/products', productsController)
+  .use('/api/v1/users', usersController)
   
   .use('/', express.static('dist')) 
 
@@ -40,7 +42,10 @@ app.use((err, req, res, next) => {
 
 
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}/`)
+  console.log(`
+    Welcome to the best class at New Paltz - ${process.env.BEST_CLASS}
+    Server running at http://localhost:${PORT}/
+  `)
 });
 
 /*
