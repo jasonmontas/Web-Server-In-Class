@@ -25,7 +25,7 @@ const session = refSession()
             </a>
 
             <div class="navbar-dropdown">
-                <a class="navbar-item" v-for="user in users" :key="user.id" @click="login(user.id)">
+                <a class="navbar-item" v-for="user in users" :key="user.id" @click="login(Number(user.id))">
                     {{ user.firstName }} {{ user.lastName }}
                 </a>
             </div>

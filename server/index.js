@@ -1,3 +1,4 @@
+
 /*  B"H
 */
 // Load the http module to create an http server.
@@ -11,6 +12,16 @@ const PORT = process.env.PORT ?? 8000
 const app = express();
 
 // Middleware
+// CORS
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(200)
+    }
+    next()
+  })
     app.use(express.json())
 
 
@@ -42,10 +53,10 @@ app.use((err, req, res, next) => {
 
 
 app.listen(PORT, () => {
-  console.log(`
-    Welcome to the best class at New Paltz - ${process.env.BEST_CLASS}
-    Server running at http://localhost:${PORT}/
-  `)
+    console.log(`
+      Welcome to the best class at New Paltz - ${process.env.BEST_CLASS}
+      Server running at http://localhost:${PORT}/
+    `)
 });
 
 /*
